@@ -1,0 +1,132 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>ABOBA</title>
+    <link rel="stylesheet" href="{% static 'css/main_page.css' %}">
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/static/images/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/scream.jpg">
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/aboba.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="/static/css/fontawesome.min.css">
+  </head>
+  <body>
+    <header>
+        {% include 'nav-bar.html' %}
+        <!--<div class="top-navbar">
+            <img src="{% static 'images/Logo.png' %}" alt="LOGO" onclick="window.location.href = 'main_page.html';">
+            <a href="">Новости</a>
+            <a href="/shop/">Магазин</a>
+        </div>-->
+    </header>
+    <main>
+        <div class="container-head-main">
+            <div class="welcome-text-body">
+                <h1 class="welcome-text">Hotline Miami: Remake. ABOBA</h1>
+            </div>
+            <div class="description">
+                <p>Адренолиновый боевик, полный крышесносных драк и захватывающих перестрелок</p>
+            </div>
+        </div>
+        <hr>
+        <div class="container-play">
+            <div class="play-header"><h1>Присоединяйся к захватывающим боям</h1></div>
+            <div class="play-description">
+                <p class="play-description-style">Беспощадная вражда.
+            Изменяйте боевые приемы по мере того, как повествование переходит от одной фракции к другой,
+                    и привносите уникальные вариации в привычный подход, а также новое оружие, движения
+                    и атаки ближнего боя.</p>
+            </div>
+            <div class="play-button"><a href="/shop/"><button>КУПИТЬ!</button></a></div>
+        </div>
+        <hr>
+        <div class="container-game-lore">
+
+                <div class="lore-header"><h1>История игры</h1></div>
+                    <div class="lore-description">
+                        <h2>Погрузись в мир кошмаров, где твои демоны - твои грехи.</h2>
+                        <p>Игрок берет на себя роль падшего героя, чья душа разрывается между виной и надеждой. <br>
+                        Каждую ночь он погружается в мрачные кошмары, где обножает свое истинное "Я" и сражается с воплощениями собственных грехов.
+                        <br>
+                        Каждый побежденный босс - это побежденный порок, и каждый шаг вперед - путь к внутреннему исцелению.
+                        </p>
+                    </div>
+
+            <div class="lore-content">
+                <img src="{% static 'images/villian_example_img.jpg' %}" alt="villian image 1">
+                <div class="villian-description">
+                    <h2>Жадность</h2>
+                    <p>Скелет в золотом мундире. Своими цепями сжимает всё, что блестит — даже души.</p>
+                </div>
+            </div>
+            <div class="lore-content lore-right">
+                <div class="villian-description-right">
+                    <h2>Гнев</h2>
+                    <p>Живой вулкан в доспехах. Его ярость разрушает всё, включая тех, кто осмелится его понять.</p>
+                </div>
+                <img src="{% static 'images/maskmad.png' %}" alt="villian image 1">
+            </div>
+            <div class="lore-content">
+                <img src="{% static 'images/villian_example_img.jpg' %}" alt="villian image 1">
+                <div class="villian-description">
+                    <h2>Лень</h2>
+                    <p>Повелитель времени, обволакивающий реальность туманом бездействия. В его царстве всё замирает.</p>
+                </div>
+            </div>
+            <div class="lore-content lore-right">
+                <div class="villian-description-right">
+                    <h2>Гордыня</h2>
+                    <p>Властитель зеркал, вечно любующийся своим отражением. Считает себя богом среди смертных.</p>
+                </div>
+                <img src="{% static 'images/maskpride.png' %}" alt="villian image 1">
+            </div>
+            <div class="lore-content">
+                <img src="{% static 'images/maskgluttony.png' %}" alt="villian image 1">
+                <div class="villian-description">
+                    <h2>Чревоугодие</h2>
+                    <p>Пожиратель миров с бездонной пастью. Проглотит всё — от пирога до планеты.</p>
+                </div>
+            </div>
+            <div class="lore-content lore-right">
+                <div class="villian-description-right">
+                    <h2>Похоть</h2>
+                    <p>Соблазн в человеческом обличье. Очаровывает, чтобы подчинить, разрушить и вновь соблазнить.</p>
+                </div>
+                <img src="{% static 'images/villian_example_img.jpg' %}" alt="villian image 1">
+            </div>
+            <div class="lore-content">
+                <img src="{% static 'images/villian_example_img.jpg' %}" alt="villian image 1">
+                <div class="villian-description">
+                    <h2>Зависть</h2>
+                    <p>Тень, крадущая чужие таланты и лица. Жаждет быть кем угодно, только не собой.</p>
+                </div>
+            </div>
+        <hr>
+        <div class="container-how-to-play">
+            <div class="how-to-play-header">
+                <h1>Описание игрового процесса Hotline Miami: Remake. ABOBA</h1>
+            </div>
+            <div class="how-to-play-content">
+                <p class="how-to-play-content-style">Hotline Miami: Remake. ABOBA выполнена в перспективе сверху вниз.
+                Перед началом миссии игрок должен выбрать маску животного, которая даёт уникальные способности,
+                например, более быстрое передвижение. На каждом этапе герой перемещается по зданию,
+                его цель почти всегда состоит в том, чтобы победить всех противников и перейти на следующий уроень.</p>
+            </div>
+        </div>
+        <hr>
+
+    </main>
+    <footer>
+      {% include 'FOOTER.html' %}
+    </footer>
+    <script src="index.js"></script>
+  </body>
+</html>

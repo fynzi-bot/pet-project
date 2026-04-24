@@ -1,0 +1,79 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Cart</title>
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+</head>
+
+<body>
+
+<h2 style="margin:20px;">🛒 Your Cart</h2>
+
+<div class="container">
+
+    {% if products %}
+        <div class="row">
+
+            {% for product in products %}
+                <div class="col-md-4">
+
+                    <div class="card mb-4 shadow-sm">
+
+                        <!-- КАРТИНКА -->
+                        <img
+                            src="{% static product.img %}"
+                            class="card-img-top"
+                            style="height:250px; object-fit:cover;"
+                        >
+
+                        <div class="card-body">
+
+                            <!-- НАЗВАНИЕ -->
+                            <h5 class="card-title">{{ product.name }}</h5>
+
+                            <!-- ОПИСАНИЕ -->
+                            <p class="card-text">
+                                {{ product.description|truncatechars:80 }}
+                            </p>
+
+                            <!-- ЦЕНА -->
+                            <p style="font-size:18px; color:green;">
+                                ${{ product.price }}
+                            </p>
+
+                            <!-- КНОПКИ -->
+                            <div class="d-flex justify-content-between">
+
+
+
+                                <a href="{% url 'add_to_cart' product.id %}"
+                                   class="btn btn-success btn-sm">
+                                    + Add again
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+            {% endfor %}
+
+        </div>
+
+    {% else %}
+        <div style="margin:20px;">
+            <h4>Корзина пустая 😢</h4>
+            <a href="/shop/" class="btn btn-primary">Go to Shop</a>
+        </div>
+    {% endif %}
+
+</div>
+
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="ru">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Новости  Aboba </title>
+
+    <link rel="icon" href="./favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon" href="/static/images/apple-icon.png">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/scream.jpg">
+
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/css/aboba.css">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="/static/css/fontawesome.min.css">
+
+</head>
+
+<body>
+    {% include 'nav-bar.html' %}
+    <div class="container py-5">
+    <header>
+        <h1 align="center">Новости Aboba</h1>
+
+        <hr>
+        <nav>
+
+            <ul>
+
+                <li><a href="#latest">Последние новости</a></li>
+
+                 <li><a href="#updates">Обновления</a></li>
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+
+    <main>
+
+        <section id="latest">
+
+            <h2 align = "center" class = " mb-4">Последние новости</h2>
+            {% for n in news %}
+            <article>
+                <div class="card mb-4 product-wap rounded-0">
+                    <div class = "card-header">
+                        <h3>{{n.title}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>{{n.short_description}}</p>
+                        <a href="/news/{{n.id}}">Читать далее</a>
+                    </div>
+
+                </div>
+
+            </article>
+            {% endfor %}
+
+        </section>
+
+        <section id="updates">
+
+            <h2 align="center" class="mb-4">Обновления</h2>
+
+            {% for u in updates %}
+            <article>
+                <div class="card mb-4 product-wap rounded-0">
+                    <div class = "card-header">
+                        <h3>{{u.title}}</h3>
+                    </div>
+                    <div class="card-body">
+                        <p>{{u.short_description}}</p>
+                        <a href="/news/{{u.id}}">Читать далее</a>
+                    </div>
+
+                </div>
+
+            </article>
+            {% endfor %}
+
+        </section>
+
+    </main>
+    </div>
+    <footer>
+      {% include 'FOOTER.html' %}
+    </footer>
+</body>
+
+</html>
