@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>Logout</h2>
+
+<p>Вы уверены, что хотите выйти?</p>
+
+<form method="post">
+    {% csrf_token %}
+    <button type="submit">Да, выйти</button>
+</form>
+
+<a href="/">Отмена</a>
+</body>
+</html>

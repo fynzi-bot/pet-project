@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+
+<html lang="ru" data-content_root="./">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Документация разработчика &#8212; документация aboba 25/05/2025</title>
+    <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=5ecbeea2" />
+    <link rel="stylesheet" type="text/css" href="_static/basic.css?v=686e5160" />
+    <link rel="stylesheet" type="text/css" href="_static/alabaster.css?v=27fed22d" />
+    <script src="_static/documentation_options.js?v=81484a55"></script>
+    <script src="_static/doctools.js?v=9bcbadda"></script>
+    <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/translations.js?v=5b699b7f"></script>
+    <link rel="index" title="Алфавитный указатель" href="genindex.html" />
+    <link rel="search" title="Поиск" href="search.html" />
+    <link rel="prev" title="&lt;no title&gt;" href="user_doc.html" />
+   
+  <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+  
+
+  
+  
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>Документация разработчика<a class="headerlink" href="#id1" title="Ссылка на этот заголовок">¶</a></h1>
+<section id="module-site_app.views">
+<span id="view"></span><h2>View-функции<a class="headerlink" href="#module-site_app.views" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py function">
+<dt class="sig sig-object py" id="site_app.views.main_page">
+<span class="sig-prename descclassname"><span class="pre">site_app.views.</span></span><span class="sig-name descname"><span class="pre">main_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#site_app.views.main_page" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Отображает главную страницу сайта.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>request (HttpRequest): HTTP-запрос от пользователя.</p>
+</dd>
+<dt>Returns:</dt><dd><p>HttpResponse: HTML-страница main_page.html.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="site_app.views.news_page">
+<span class="sig-prename descclassname"><span class="pre">site_app.views.</span></span><span class="sig-name descname"><span class="pre">news_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#site_app.views.news_page" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Отображает страницу с новостями.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>request (HttpRequest): HTTP-запрос от пользователя.</p>
+</dd>
+<dt>Returns:</dt><dd><p>HttpResponse: HTML-страница news.html с контекстом, содержащим новость или обновление.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="site_app.views.news_single_page">
+<span class="sig-prename descclassname"><span class="pre">site_app.views.</span></span><span class="sig-name descname"><span class="pre">news_single_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#site_app.views.news_single_page" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Обрабатывает HTTP-запрос на отображеине отдельной страницы новости по её ID.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>request (HttpRequest): Объект запроса Django.
+id (int, optional): идентификатор новости. По умолчанию 0.</p>
+</dd>
+<dt>Returns:</dt><dd><p>HttpResponse: Отображает шаблон новости «news-single.html» с контекстом, содержащим новость или пустой словарь.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="site_app.views.shop_page">
+<span class="sig-prename descclassname"><span class="pre">site_app.views.</span></span><span class="sig-name descname"><span class="pre">shop_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#site_app.views.shop_page" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Отображает страницу с каталогом товаров.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>request (HttpRequest): HTTP-запрос от пользователя.</p>
+</dd>
+<dt>Returns:</dt><dd><p>HttpResponse: HTML-страница shop.html с контекстом, содержащим список товаров.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="site_app.views.shop_single_page">
+<span class="sig-prename descclassname"><span class="pre">site_app.views.</span></span><span class="sig-name descname"><span class="pre">shop_single_page</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">request</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">id</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#site_app.views.shop_single_page" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Отображает страницу с подробной информацией о товарах.</p>
+<dl class="simple">
+<dt>Args:</dt><dd><p>request (HttpRequest): HTTP-запрос от пользователя.</p>
+</dd>
+<dt>Returns:</dt><dd><p>HttpResponse: HTML-страница shop-single.html с контекстом, содержащим отедельный товар.
+Id (int, optional): идентификатор конкретного товара.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="id2">
+<h2>Модели базы даннных<a class="headerlink" href="#id2" title="Ссылка на этот заголовок">¶</a></h2>
+<dl class="py class" id="module-site_app.models">
+<dt class="sig sig-object py" id="site_app.models.Goods">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">site_app.models.</span></span><span class="sig-name descname"><span class="pre">Goods</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#site_app.models.Goods" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Представляет товар, включающий:
+img - путь или URL к изображению (до 200 символов)
+name - название товара (до 200 символов)
+price - цена товара, должна быть неотрицательной
+description - подробное описание (до 200 символов)</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="site_app.models.Goods.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#site_app.models.Goods.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="site_app.models.Goods.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#site_app.models.Goods.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="site_app.models.News">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">site_app.models.</span></span><span class="sig-name descname"><span class="pre">News</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#site_app.models.News" title="Ссылка на это определение">¶</a></dt>
+<dd><p>Представляет новость, содержащую: 
+title - заголовок новости (обязателен, до 100 символовав)
+short_descreption - краткое описание (до 200 символов)
+description - полное описание новости (до 1000 символов)
+created_date - дата и время создания новости. По умолчанию - текущая датавремя.
+category - категория новости, выбирается из: N: новости U: Обновления</p>
+<dl class="py exception">
+<dt class="sig sig-object py" id="site_app.models.News.DoesNotExist">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">DoesNotExist</span></span><a class="headerlink" href="#site_app.models.News.DoesNotExist" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="py exception">
+<dt class="sig sig-object py" id="site_app.models.News.MultipleObjectsReturned">
+<em class="property"><span class="pre">exception</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">MultipleObjectsReturned</span></span><a class="headerlink" href="#site_app.models.News.MultipleObjectsReturned" title="Ссылка на это определение">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="Main">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="index.html">aboba</a></h1>
+
+
+
+
+
+
+
+
+
+<search id="searchbox" style="display: none" role="search">
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" placeholder="Search"/>
+      <input type="submit" value="Искать" />
+    </form>
+    </div>
+</search>
+<script>document.getElementById('searchbox').style.display = "block"</script><h3>Навигация</h3>
+<p class="caption" role="heading"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Документация разработчика</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#module-site_app.views">View-функции</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Модели базы даннных</a></li>
+</ul>
+</li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="user_doc.html" title="предыдущая глава">&lt;no title&gt;</a></li>
+  </ul></li>
+</ul>
+</div>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &#169;2025, AbobaTeam.
+      
+      |
+      Powered by <a href="https://www.sphinx-doc.org/">Sphinx 8.1.3</a>
+      &amp; <a href="https://alabaster.readthedocs.io">Alabaster 1.0.0</a>
+      
+      |
+      <a href="_sources/code.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

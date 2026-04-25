@@ -1,0 +1,169 @@
+body {
+    font-family: Arial, sans-relief;
+    margin: 0;
+    padding: 0;
+
+}
+.top-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #780000;
+    color: #fdf0d5;
+    padding: 10px 20px;
+}
+.top-navbar img{
+    height: 40px;
+    cursor: pointer;
+}
+.top-navbar a{
+    color: #fdf0d5;
+    text-decoration: none;
+    margin-left: 20px;
+    font-size: 18px;
+}
+.container-head-main{
+height:300px
+}
+.welcome-text-body {
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    height: 150px;
+    margin: 0;
+}
+.welcome-text{
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 44px;
+}
+.description{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    font-size: 24px;
+}
+
+.container-play{
+    text-align: center;
+    margin: 0 auto;
+    max-width:800px;
+    width: 75%
+}
+.play-header{
+    font-size: 28px;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    margin-bottom: 0;
+}
+.play-description{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.play-description-style{
+    width; 300px;
+    line-height: 1.5;
+    text-align: center;
+    padding: 15px;
+    font-size: 22px;
+}
+
+@keyframes slideme {
+    0% {
+        left: -30px;
+        margin-left: 0px;
+    }
+    30% {
+        left: 110%;
+        margin-left: 80px;
+    }
+    100% {
+        left: 110%;
+        margin-left: 80px;
+    }
+}
+
+.play-button {
+    overflow: hidden;
+    position: relative;
+}
+
+.play-button:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -200px;
+    width: 60px;
+    height: 100px;
+    background-color: #780000;
+    filter: blur(30px);
+    transform: skewX(30deg) translateZ(0);
+    transition: 1s;
+    animation-name: slideme;
+    animation-duration: 3s;
+    animation-delay: 0.05s;
+    animation-timing-function: ease;
+    animation-iteration-count: infinite;
+}
+
+.container-game-lore{
+    text-align: JUSTIFY;
+    margin: 0px 0px 0px 15px;
+}
+.lore-header{
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 100px;
+}
+.lore-description{
+    font-size: 22px;
+}
+
+.container-how-to-play{
+    text-align: center;
+}
+.lore-content{
+    display: flex;
+    align-items: center;
+    padding: 20px;
+}
+.lore-right {
+    justify-content: end;
+}
+.lore-content img{
+    max-width: 300px;
+    height: auto;
+    margin-height: 20px;
+    border-radius: 8px;
+}
+.lore-content .villian-description{
+    max-width: 600px;
+    margin-left: 50px;
+}
+.lore-content .villian-description-right{
+    max-width:600px;
+    margin-right: 50px;
+}
+.lore-content .villian-description h2{
+    margin-top: 0;
+}
+.lore-content .villian-description p {
+    line-height: 1.5;
+}
+
+.how-to-play-content{
+    justify-content: center;
+    align-items: center;
+    display: flex;
+}
+.how-to-play-content-style{
+    width; 300px;
+    line-height: 1.5;
+    text-align: center;
+    padding: 15px;
+    font-size: 22px;
+}
+
+
