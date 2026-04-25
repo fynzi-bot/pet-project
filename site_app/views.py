@@ -125,7 +125,7 @@ def editProfile(request):
         return redirect ('profile', username=request.user.username)
     return render(request, "EditProfile.html")
 
-def rewiews_page(request):
+def reviews_page(request):
     return render (request,'rewiews_page.html')
 
 def reviews_view(request):
