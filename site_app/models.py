@@ -1,4 +1,6 @@
 import datetime
+
+from django.contrib.auth.models import User
 from django.core.validators import MinValueValidator
 from django.db import models
 
@@ -32,3 +34,23 @@ class Goods(models.Model):
     price = models.IntegerField(blank=False, validators=[MinValueValidator(0)])
     description = models.TextField(blank=False, max_length=2000)
     # categories
+class Profile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    img = models.ImageField(default='default.jpg', upload_to='avatars/', blank=True,null = True)
+    description = models.TextField(blank=False, max_length=2000)
+class Reviews(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50)
+    description = models.TextField(blank=True, max_length=2000)
+    stars = models.IntegerField(validators=[MinValueValidator(1)])
+    def __str__(self):
+        return self.title
+class Forum(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    title = models.CharField(max_length=50)
+    description = models.TextField(blank=True, max_length=2000)
+    img = models.ImageField(upload_to='forumImg/', blank=True,null = True)
+    is_closed = models.BooleanField(default=False)
+    created_date = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.title
