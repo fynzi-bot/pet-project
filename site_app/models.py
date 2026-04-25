@@ -54,3 +54,10 @@ class Forum(models.Model):
     created_date = models.DateTimeField(auto_now_add=True)
     def __str__(self):
         return self.title
+class Comment(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    bind_to_ask = models.ForeignKey(Forum, on_delete=models.CASCADE)
+    description = models.TextField(blank=False, max_length=2000)
+    created_at = models.DateTimeField(auto_now_add=True)
+    def __str__(self):
+        return self.description

@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect,get_object_or_404
-from site_app.models import News, Goods, Profile, Reviews, Forum
+from site_app.models import News, Goods, Profile, Reviews, Forum, Comment
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
@@ -108,6 +108,7 @@ def remove_from_cart(request, id):
 def Profile (request, username):
     user = get_object_or_404(User, username=username)
     return render (request, 'profile.html', {'profile_user' : user})
+
 def editProfile(request):
     if request.method == "POST":
         user = request.user
@@ -147,8 +148,11 @@ def reviews_view(request):
         review.save()
         return redirect ('/reviews')
     return render(request, "Reviews.html")
+
 def forum(request):
-    return render(request, "forum.html")
+    forums = Forum.objects.order_by('-created_date')
+    return render(request, "forum.html", {'forums':forums})
+
 def create_forum(request):
     if request.method == "POST":
         if not request.user.is_authenticated:
@@ -166,6 +170,38 @@ def create_forum(request):
             description=description,
             img=img
         )
-        return redirect('/forum')
+        return redirect('forum')
     return render(request, "forum.html")
+
+def add_comment(request, id):
+    forum = get_object_or_404(Forum, id=id)
+    comments = Comment.objects.filter(forum=forum)
+    if request.method == "POST":
+        if not request.user.is_authenticated:
+            return render (request, "login.html", {'err': 'login required'})
+        description = request.POST.get("description")
+        if forum.is_closed:
+            return render(request, "forum_task.html", {
+                'single_task': forum,
+                'comments': Comment.objects.filter(forum=forum),
+                'err': 'task is closed'
+            })
+        if not description:
+            return render(request, "forum_task.html", {
+                'single_task': forum,
+                'comments': comments,
+                'err': 'description required'
+            })
+        Comment.objects.create(
+        forum=forum,
+        user=request.user,
+        description=description
+        )
+        return redirect('forum_task', id=forum.id)
+    return redirect("forum_task",id=forum.id)
+
+def forum_task(request, id):
+    forum = get_object_or_404(Forum,id=id)
+    comments = Comment.objects.filter(forum=forum).order_by('-created_at')
+    return render(request, "forum_task.html", {'single_task': forum, 'comments': comments})
 
