@@ -22,14 +22,14 @@ body {
     margin-left: 20px;
     font-size: 18px;
 }
-.container-head-main{
-height:300px
+.container-head-main {
+    padding: 50px 0;
 }
 .welcome-text-body {
     justify-content: center;
     align-items: center;
     display: flex;
-    height: 150px;
+    height: auto;
     margin: 0;
 }
 .welcome-text{
