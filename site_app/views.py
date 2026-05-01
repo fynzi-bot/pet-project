@@ -1,6 +1,4 @@
 from django.shortcuts import render, redirect,get_object_or_404
-from site_app.models import News, Goods
-from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -41,8 +39,6 @@ def news_single_page(request, id=0):
 
 def Login(request):
     if request.method == "POST":
-        username = request.POST["username"]
-        password = request.POST["password"]
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
@@ -65,10 +61,8 @@ def register(request):
 
 def logout_page(request):
     logout(request)
-    return render (request, "logout.html")
 
 def add_to_cart(request, id):
-    product = get_object_or_404(Goods, id=id)
     cart = request.session.get('cart', {})
     id = str(id)
     if id in cart:

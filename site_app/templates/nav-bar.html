@@ -40,26 +40,11 @@
                     <a class="nav-icon d-none d-lg-inline" href="#" data-bs-toggle="modal" data-bs-target="#aboba_search">
                         <i class="fa fa-fw fa-search text-dark mr-2"></i>
                     </a>
-                    <a class="nav-icon position-relative text-decoration-none" href="{% url 'cart' %}">
                 <i class="fa fa-fw fa-cart-arrow-down text-dark mr-1"></i>
-                      </a>
-                               {% if user.is_authenticated %}
-                {# если зареган то "Выйти" #}
-                <a class="nav-icon position-relative text-decoration-none" href="/profile/">
-                    <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                    <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark-7">99</span> {# счетчик уведомлений #}
                 </a>
-                <a class="nav-icon position-relative text-decoration-none" href="{% url 'logout' %}">Выйти</a>
-            {% else %}
-                {# если не зареган то ведут на страницу регистрации #}
-                <a class="nav-icon position-relative text-decoration-none" href="{% url 'register' %}"> {# ведет на регистрацию #}
                     <i class="fa fa-fw fa-user text-dark mr-3"></i>
-                    <span class="position-absolute top-0 left-100 translate-middle badge rounded-pill bg-light text-dark-7"></span>
                 </a>
-                <a class="nav-icon position-relative text-decoration-none" href="{% url 'register' %}">Войти</a>
             {% endif %}
-
-
                 </div>
             </div>
 

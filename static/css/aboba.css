@@ -112,28 +112,5 @@ body, ul, li, p, a, label, input, div {
     height: 12px;
   }
 }
-html {
-    height: 100%;
-}
-
-body {
-    margin: 0 !important;
-    padding: 0 !important;
-    display: flex !important;
-    flex-direction: column !important;
-    min-height: 100vh !important;
-
-
-#main_content {
-    flex: 1 0 auto !important;
-}
-
-
-#tempaltemo_footer {
-    width: 100%;
-    flex-shrink: 0 !important;
-}
-
-
 
 @media (min-width: 1200px) {}

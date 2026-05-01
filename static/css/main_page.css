@@ -23,13 +23,11 @@ body {
     font-size: 18px;
 }
 .container-head-main {
-    padding: 50px 0;
 }
 .welcome-text-body {
     justify-content: center;
     align-items: center;
     display: flex;
-    height: auto;
     margin: 0;
 }
 .welcome-text{
