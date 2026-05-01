@@ -2,7 +2,6 @@ import datetime
 from django.core.validators import MinValueValidator
 from django.db import models
 
-
 class News(models.Model):
     """
     Представляет новость, содержащую: 
@@ -31,4 +30,3 @@ class Goods(models.Model):
     name = models.CharField(blank=False, max_length=200)
     price = models.IntegerField(blank=False, validators=[MinValueValidator(0)])
     description = models.TextField(blank=False, max_length=2000)
-    # categories

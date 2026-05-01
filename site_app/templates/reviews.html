@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title>Отзывы - ABOBA SHOP</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/aboba.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;200;300;400;500;700;900&display=swap">
+    <link rel="stylesheet" href="{% static 'css/fontawesome.min.css' %}">
+</head>
+
+<body>
+    <header>
+        {% include 'nav-bar.html' %}
+    </header>
+
+    <!-- Обертка с min-height, чтобы футер не прыгал вверх, если отзывов мало -->
+    <div id="main_content" style="min-height: 75vh;">
+        <div class="container py-5">
+            <h1 class="h2 pb-4 text-center">Отзывы наших покупателей</h1>
+
+            <!-- Блок формы -->
+            <div class="row justify-content-center mb-5">
+                <div class="col-md-6 border p-4 shadow-sm bg-light rounded">
+                    <h3 class="h4 mb-3">Оставить свой отзыв</h3>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="mb-3">
+                            <label class="form-label">Ваше имя</label>
+                            {{ form.author }}
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Ваш отзыв</label>
+                            {{ form.text }}
+                        </div>
+                        <button type="submit" class="btn btn-success btn-lg w-100 text-white">Опубликовать отзыв</button>
+                    </form>
+                </div>
+            </div>
+
+            <hr>
+
+            <!-- Список отзывов -->
+            <div class="row justify-content-center mt-5">
+                <div class="col-md-8">
+                    {% for r in reviews %}
+                    <div class="card mb-3 shadow-sm border-left-success">
+                        <div class="card-body">
+                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                <h5 class="card-title mb-0 text-success"><strong>{{ r.author }}</strong></h5>
+                                <span class="text-muted small">{{ r.created_at|date:"d.m.Y H:i" }}</span>
+                            </div>
+                            <p class="card-text text-dark">{{ r.text }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="text-center py-5">
+                        <p class="text-muted italic">Пока отзывов нет. Станьте первым, кто поделится мнением!</p>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Футер вынесен за пределы основного контента -->
+    {% include 'FOOTER.html' %}
+
+    <!-- Скрипты, чтобы всё крутилось-вертелось -->
+    <script src="{% static 'js/jquery-1.11.0.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.min.js' %}"></script>
+    <script src="{% static 'js/aboba.js' %}"></script>
+</body>
+</html>
+
