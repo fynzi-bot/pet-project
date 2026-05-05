@@ -1,4 +1,6 @@
 from django.shortcuts import render, redirect,get_object_or_404
+from site_app.models import News, Goods, Profile, Reviews, Forum, Comment
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -39,6 +41,8 @@ def news_single_page(request, id=0):
 
 def Login(request):
     if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
         user = authenticate(request, username=username, password=password)
         if user:
             login(request, user)
@@ -55,12 +59,14 @@ def register(request):
             messages.error(request, "Username already exists")
             return render(request, "register.html")
         user = User.objects.create_user(username=username, password=password)
+        Profile.objects.create(user=user)
         login(request, user)
         return redirect("http://127.0.0.1:8000/shop")
     return render(request, "register.html")
 
 def logout_page(request):
     logout(request)
+    return redirect ("login")
 
 def add_to_cart(request, id):
     cart = request.session.get('cart', {})
@@ -99,3 +105,102 @@ def remove_from_cart(request, id):
         del cart[id]
     request.session['cart'] = cart
     return redirect('/cart')
+def Profile (request, username):
+    user = get_object_or_404(User, username=username)
+    return render (request, 'profile.html', {'profile_user' : user})
+
+def editProfile(request):
+    if request.method == "POST":
+        user = request.user
+        profile, created = Profile.objects.get_or_create(user=user)
+        description = request.POST.get("description")
+        username = request.POST.get("username")
+        if username:
+            user.username = username
+        if 'img' in request.FILES:
+            profile.img = request.FILES['img']
+        if description:
+            profile.description = description
+        user.save()
+        profile.save()
+        return redirect ('profile', username=request.user.username)
+    return render(request, "EditProfile.html")
+
+def reviews_page(request):
+    return render (request,'rewiews_page.html')
+
+def reviews_view(request):
+    if request.method == "POST":
+        if not request.user.is_authenticated:
+            return render (request, "login.html", {'err': 'login required'})
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        stars = request.POST.get("stars")
+        if not title:
+            return render (request, "Reviews.html", {'err': 'title required'})
+        stars = int(stars)
+        if not 1<=stars<=5:
+            return render (request, "Reviews.html", {'err': 'ur rating <1 or >5'})
+        review , created = Reviews.objects.get_or_create(user=request.user)
+        review.title = title
+        review.description = description
+        review.stars = stars
+        review.save()
+        return redirect ('/reviews')
+    return render(request, "Reviews.html")
+
+def forum(request):
+    forums = Forum.objects.order_by('-created_date')
+    return render(request, "forum.html", {'forums':forums})
+
+def create_forum(request):
+    if request.method == "POST":
+        if not request.user.is_authenticated:
+            return render (request, "login.html", {'err': 'login required'})
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        img = request.FILES.get('img')
+        if not title:
+            return render (request, "forum.html", {'err': 'title required'})
+        if not description:
+            return render (request, "forum.html", {'err': 'description required'})
+        forum = Forum.objects.create(
+            user=request.user,
+            title=title,
+            description=description,
+            img=img
+        )
+        return redirect('forum')
+    return render(request, "forum.html")
+
+def add_comment(request, id):
+    forum = get_object_or_404(Forum, id=id)
+    comments = Comment.objects.filter(forum=forum)
+    if request.method == "POST":
+        if not request.user.is_authenticated:
+            return render (request, "login.html", {'err': 'login required'})
+        description = request.POST.get("description")
+        if forum.is_closed:
+            return render(request, "forum_task.html", {
+                'single_task': forum,
+                'comments': Comment.objects.filter(forum=forum),
+                'err': 'task is closed'
+            })
+        if not description:
+            return render(request, "forum_task.html", {
+                'single_task': forum,
+                'comments': comments,
+                'err': 'description required'
+            })
+        Comment.objects.create(
+        forum=forum,
+        user=request.user,
+        description=description
+        )
+        return redirect('forum_task', id=forum.id)
+    return redirect("forum_task",id=forum.id)
+
+def forum_task(request, id):
+    forum = get_object_or_404(Forum,id=id)
+    comments = Comment.objects.filter(forum=forum).order_by('-created_at')
+    return render(request, "forum_task.html", {'single_task': forum, 'comments': comments})
