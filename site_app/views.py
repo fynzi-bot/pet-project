@@ -1,9 +1,10 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from site_app.models import News, Goods, Profile, Reviews, Forum, Comment
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 from django.contrib.auth import authenticate, login, logout
-from django.contrib.auth.models import User
+from django.contrib.auth.models import User, PermissionsMixin
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
 def main_page(request):
     return render(request, "main_page.html")
 
@@ -23,12 +24,7 @@ def shop_single_page(request, id):
 
 
 def news_page(request):
-    context = {}
-    context["news"] = News.objects.filter(category="N")
-    context["updates"] = News.objects.filter(category="U")
-    return render(request, "news.html", context)
-
-
+    return render (request, "news.html", {'news': News.objects.all()})
 def news_single_page(request, id=0):
     context = {}
     news_list = News.objects.filter(id=id)
@@ -204,4 +200,26 @@ def forum_task(request, id):
     forum = get_object_or_404(Forum,id=id)
     comments = Comment.objects.filter(forum=forum).order_by('-created_at')
     return render(request, "forum_task.html", {'single_task': forum, 'comments': comments})
+@csrf_exempt
+def create_news(request):
+    if request.method == "POST":
+        if not request.user.is_superuser:
+            return render (request, "login.html", {'err': 'admin permissions required'})
+        title = request.POST.get("title")
+        description = request.POST.get("description")
+        short_description = request.POST.get("short_description")
+        if not title:
+            return render (request, "news.html", {'err': 'title required'})
+        if not description:
+            return render (request, "news.html", {'err': 'description required'})
+        News.objects.create (
+
+            title=title,
+            description=description,
+            short_description=short_description
+        )
+        return redirect('http://127.0.0.1:8000/news/')
+    return render(request, "create_blank.html")
+def news_list(request):
+    return render (request, "news.html", {'news': News.objects.all()})
 

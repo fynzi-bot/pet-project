@@ -3,6 +3,7 @@ from django.urls import path
 from site_app import views
 from django.conf.urls.static import static
 from django.conf import settings
+from site_app.views import create_news
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -24,5 +25,7 @@ urlpatterns = [
     path('edit-profile/', views.editProfile, name='edit_profile'),
     path('forum/<int:id>/',views.forum_task, name='single_task' ),
     path('forum/<int:id>/comment/', views.add_comment, name='add_a_comment'),
+    path ('createnew/', views.create_news, name='create_a_new'),
+    path('news-list', views.news_list, name='news_list'),
        ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

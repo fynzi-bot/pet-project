@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>News List</title>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 40px auto;
+        }
+
+        .news-card {
+            border: 1px solid #ddd;
+            padding: 16px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+        }
+
+        .title {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 6px;
+        }
+
+        .short {
+            color: #555;
+            margin-bottom: 8px;
+        }
+
+        .desc {
+            white-space: pre-line;
+        }
+    </style>
+</head>
+<body>
+
+<h1>All News</h1>
+
+{% for news in news_list %}
+    <div class="news-card">
+        <div class="title">{{ news.title }}</div>
+        <div class="short">{{ news.short_description }}</div>
+        <div class="desc">{{ news.description }}</div>
+    </div>
+{% empty %}
+    <p>No news yet.</p>
+{% endfor %}
+
+</body>
+</html>

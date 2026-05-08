@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Create News</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 700px;
+            margin: 40px auto;
+        }
+
+        input, textarea {
+            width: 100%;
+            margin-bottom: 12px;
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        button {
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        .card {
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Create News</h2>
+
+    <form method="POST" action="">
+        <!-- если у тебя CSRF (Django), раскомментируй -->
+        <!-- {% csrf_token %} -->
+
+        <input type="text" name="title" placeholder="Title" required>
+
+        <input type="text" name="short_description" placeholder="Short description" required>
+
+        <textarea name="description" placeholder="Full description" required></textarea>
+
+        <button type="submit">Create</button>
+    </form>
+</div>
+
+</body>
+</html>

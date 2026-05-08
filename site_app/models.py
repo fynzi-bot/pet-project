@@ -17,8 +17,7 @@ class News(models.Model):
     title = models.CharField(blank=False, max_length=100)
     short_description = models.TextField(blank=False, max_length=200)
     description = models.TextField(blank=False, max_length=2000)
-    created_date = models.DateTimeField(default=datetime.datetime.now())
-    category = models.CharField(blank=False, max_length=50, choices={"N": "Новости", "U": "Обновления"})
+    created_date = models.DateTimeField(auto_now_add=True)
 
 
 class Goods(models.Model):
